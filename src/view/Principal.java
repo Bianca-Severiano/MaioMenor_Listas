@@ -17,32 +17,42 @@ public class Principal {
 		l.addLast(3);
 		l.addLast(7);
 		l.addLast(16);
-		
-		int menor = 0;
+
 		int maior = 0;
-		int tamanho = l.size();
 		int cont = 0;
-		
-		do {
-			int atual = l.get(0);
-			if(maior == 0 && menor == 0) {
-				maior = atual;
-				menor = maior;
+
+		for (int i = 0; i < 2; i++) {
+			int tamanho = l.size();
+			do {
+				int atual = l.get(0);
+
+				if (maior == 0) {
+					maior = atual;
+				}
+
+				if (atual > maior) {
+					maior = atual;
+				}
+
+				l.removeFirst();
+				l.addLast(atual);
+				
+				cont++;
+
+			} while (cont < tamanho);
+
+			System.out.println(maior);
+			
+			for (int j = 0; j < l.size(); j++) {
+				if (maior == l.get(j)) {
+					l.remove(j);
+				}
 			}
 			
-			if(atual > maior) {
-				maior = atual;
-			} else if (atual < menor) {
-				menor = atual;
-			}
-			
-			l.removeFirst();
-			l.addLast(atual);
-			cont++;
-		} while (cont < tamanho);
-		
-		System.out.println(maior);
-		System.out.println(menor);
+			maior = 0;
+			cont = 0;
+		}
+
 	}
 
 }
